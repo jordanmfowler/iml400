@@ -2,6 +2,60 @@ body {
     background-color: white;
 }
 
+#ux {
+    background-color: #75797A;
+    width: 700px;
+    height: 200px;
+    float: left;
+    margin: 5px;
+    padding: 20px;
+}
+
+#readingresponseux {
+     background-color: pink;
+    width: 410px;
+    height: 476px;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+}
+
+#presentation {
+    background-color: #B0E57C;
+    width: 200px;
+    height: 240px;
+    float: left;
+    margin: 5px;
+}
+
+#box2 {
+    background-color: #9BD1FA;
+    width: 500px;
+    height: auto;
+    float: left;
+    margin: 5px;
+    padding: 5px;
+}
+
+#box3 {
+    background-color: #FFEC94;
+    width: 930px;
+    height: auto;
+    float: left;
+    margin: 5px;
+        padding: 5px;
+}
+
+
+#box4 {
+    background-color: black;
+    width: 400px;
+    height: auto;
+    float: right;
+    margin: 5px;
+        padding: 5px;
+}
+
 .header {
     background-color: ;
     top: 0px;
