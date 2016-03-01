@@ -1,7 +1,28 @@
 body {
     background-color: white;
+        background-image: url("rice.jpg");
+
 }
 
+
+#new {
+    width: 100px;
+    height: 300px;
+    background-color: yellow;
+    float: left;
+        margin: 5px;
+    padding: 5px;
+}
+
+#api {
+    width: 500px;
+    height: 300px;
+    background-color: #19198c;
+    margin: 5px;
+    padding: 5px;
+    font-size: 2em;
+    color: white;
+}
 #ux {
     background-color: #75797A;
     width: 700px;

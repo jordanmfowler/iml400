@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>API</title>
+<link href='stylesheets/readingresponses.css' rel='stylesheet' type='text/css'>
+<style>
+    #cafeinfo {
+  border: 3px solid white;
+  width: 50%;
+  margin: auto;
+  margin-bottom: 2%;
+  color: white;
+  font-size: 1.1em;
+  padding: 8px;
+  font-family: Georgia, sans-serif;
+    }
+
+    #instagram {
+  width: 850px;
+  margin: 0 auto;
+}
+img.thumbnails {
+  width: 250px;
+  margin: 3px;
+  }
+    
+</style>
+<script src="jquery-1.11.2.min.js"></script><!--this is the local jquery file on my computer-->
+
+
+<script>
+   $(document).ready(function(){
+  $(".header").mouseover(function(){
+    $(".header").addClass("highlight");
+       
+  });
+        
+  $(".header").mouseout(function(){
+    $(".header").removeClass("highlight");
+  });
+    
+     });
+</script>
+    
+    <style type="text/css">
+       a:active {color: black;}    /* selected link */
+    </style>
+</style>
+</head>
+<body>
+
+<div class="header">
+<div id="nav">
+    <a href="index.html">Home</a>|  <a href="about.html">About</a> |  <strong><a href="readingresponses.html">Assignments</a></strong> | <a href="page3.html">Page 3</a>  
+</div><!--nav-->
+</div><!--header-->
+
+<div id="main2">
+</div>
+<center><span style="font-size:3em">Hungry yet?</span></center>
+
+<div id="instagram">
+<div id="rice">
+<script>
+    /*
+    function cafe(address) {
+  return alfreds.address;
+    }*/
+  
+function instagramData(json) {
+  // console.log(json.data);
+  var imgTagString = '';
+  json.data.forEach(function(item) {
+    var imgUrl = item.images.standard_resolution.url;
+    // console.log(imgUrl);
+    imgTagString += '<img class="thumbnails" src="'+imgUrl+'">';
+  });
+  document.getElementById('instagram').innerHTML = imgTagString;
+    }
+
+
+</script>
+<script src="https://api.instagram.com/v1/locations/337718612/media/recent/?client_id=c8583f362b844de9b2fc994c1a5a0ff8&callback=instagramData"></script>
+</div>
+</div>
+</div><!--main-->
+</div><!--box3-->
+
+    
+
+<div id="footer">
+    Jordan Fowler 2016
+</div><!--footer-->
+</body>
+</html>
