@@ -4,6 +4,22 @@ body {
 
 }
 
+#newtop{
+    text-align: center;
+    font-size: 1em;
+    background-color: purple;
+    padding: 10px;
+}
+
+#owl {
+     background-color: teal;
+    width: 470px;
+    height: 300px;
+    float: right;
+    margin: 5px;
+
+}
+
 
 #new {
     width: 100px;
@@ -18,10 +34,10 @@ body {
     width: 500px;
     height: 300px;
     background-color: #19198c;
-    margin: 5px;
     padding: 5px;
     font-size: 2em;
     color: white;
+    float: left;
 }
 #ux {
     background-color: #75797A;
