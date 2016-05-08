@@ -1,13 +1,3 @@
-<!--
-	Take:
-1) opacity on drag, 
-2) diapear when dropped 
-3) change dropped to you have taken ____.
-	Give:
-1)add elements once given
-
--->
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -20,40 +10,90 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/jquery-1.11.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>  
-<!-- 
-<script>
-$(document).ready(function(){
-$(".card").draggable({
-    start: function(){
-      $(this).addClass('dragged');
-    },
-    stop: function(){
-      $(this).removeClass('dragged');
-    }
 
-});
-});
+<script>
+  var currStx=-100;
+  var currSty=-100;
+
+  /*$(function(){
+    (".card")(
+      currStx=event.target.x,
+      currSty=event.target.y
+  )});*/
+ 
+
 </script>
- -->
 
    <script>
+
+    var debugVar,
+        stringOpener = "https://api.instagram.com/v1/tags/",
+        stringKey,
+        /*stringCloser = "/media/recent/?client_id=c8583f362b844de9b2fc994c1a5a0ff8&callback=instagramData",*/
+        stringCloser = "/media/recent/?client_id=c8583f362b844de9b2fc994c1a5a0ff8",
+        instgramScriptString = "";
+
+   function toggleOpacity(elem,flag) {
+    if( flag ) {
+      elem.style.opacity = "0.5";
+    } else {
+      elem.style.opacity = "1.0";
+    }
+   }
+
   $(function() {
-    $( ".card" ).draggable();
-     //  {$(this).addClass('dragged');}
+    $( ".card" ).draggable(
+        { stop: function(event,ui) {                
+                //console.log("this is the word that you dragged " + event.target.textContent);
+                draggingCard = event.target;
+                toggleOpacity(draggingCard);
+
+              }
+            
+              ,
+
+          start: function(event,ui) {
+              // debugVar = ui;   
+              draggingCard = event.target;
+              toggleOpacity(draggingCard, true);
+          }
+        }
+      );
+
 
     $( "#droppable" ).droppable({
+    
+
       drop: function( event, ui ) {
-        $( this )
-          .addClass( "ui-state-highlight" )
-          // .find( "p" )
-          .find("p")
-            .html( "dropped!" );
-            // .html(card p)
-            // $("p").html( "dropped!" );
+        document.getElementById("droppable").innerHTML = ("You have " + draggingCard.textContent+"!");
+        $(ui.draggable).remove();
+        instgramScriptString = stringOpener + draggingCard.textContent + stringCloser;
+        //$("#instagram-go").attr("src", instgramScriptString);
+        $.getJSON(instgramScriptString, function( data ) {
+            console.log("getJSON running - Jonathan Fudem rocks");
+            instagramData(data);
+        });
+
       }
+
     });
   });
   </script>
+
+<script>
+   $(document).ready(function(){
+  $(".header").mouseover(function(){
+    $(".header").addClass("highlight");
+       
+  });
+        
+  $(".header").mouseout(function(){
+    $(".header").removeClass("highlight");
+  });
+    
+     });
+</script>
+
 
   </head>
   <body>
@@ -67,100 +107,120 @@ Take What You Need, Give What You Can
   		<div id="take">
   			Take What You Need
   			<br>
-  		<div class="card" style="background-color: #ABC6B4 ; float: left">
-  			confidence
-  		</div><!--card-->
-		<div class="card" style="background-color: #B8C2D1 ; float: left " >
-			motivation 
-		</div><!--card-->
-		<div class="card" style="background-color: #C7E2E1 ; float: left " >
-			happiness 
-		</div><!--card-->
+  		<div class="card" style="background-color: #ABC6B4 ; float: left">confidence</div><!--card-->
+		<div class="card" style="background-color: #B8C2D1 ; float: left " >motivation</div><!--card-->
+		<div class="card" style="background-color: #C7E2E1 ; float: left " >happiness</div><!--card-->
+		<!--newrowhere-->
+		<div class="card" style="background-color: #C7E2E1 ; float: left">joy</div><!--card-->
+		<div class="card" style="background-color: #ABC6B4 ; float: left " >love</div><!--card-->
+		<div class="card" style="background-color: #EAC6C3 ; float: left " >peace</div><!--card-->
 
 		<!--newrowhere-->
-		<div class="card" style="background-color: #C7E2E1 ; float: left">
-  			joy
-  		</div><!--card-->
-		<div class="card" style="background-color: #ABC6B4 ; float: left " >
-			love 
-		</div><!--card-->
-		<div class="card" style="background-color: #EAC6C3 ; float: left " >
-			peace 
-		</div><!--card-->
-
+		<div class="card" style="background-color: #EAC6C3 ; float: left">courage</div><!--card-->
+		<div class="card" style="background-color: #B8C2D1 ; float: left " >patience</div><!--card-->
+		<div class="card" style="background-color: #C7E2E1 ; float: left " >motivation</div><!--card-->
 		<!--newrowhere-->
-		<div class="card" style="background-color: #EAC6C3 ; float: left">
-  			courage
-  		</div><!--card-->
-		<div class="card" style="background-color: #B8C2D1 ; float: left " >
-			patience 
-		</div><!--card-->
-		<div class="card" style="background-color: #C7E2E1 ; float: left " >
-			motivation 
-		</div><!--card-->
-
-		<!--newrowhere-->
-		<div class="card" style="background-color: #C7E2E1 ; float: left">
-  			freedom
-  		</div><!--card-->
-		<div class="card" style="background-color: #EAC6C3 ; float: left " >
-			strength 
-		</div><!--card-->
-		<div class="card" style="background-color: #ABC6B4 ; float: left " >
-			<p>passion</p> 
-		</div><!--card-->
+		<div class="card" style="background-color: #C7E2E1 ; float: left">freedom</div><!--card-->
+		<div class="card" style="background-color: #EAC6C3 ; float: left " >strength</div><!--card-->
+		<div class="card" style="background-color: #ABC6B4 ; float: left " >passion</div><!--card-->
 
 
 <!-- <span style="text-align:left">Today I need: </span> -->
 <br>
 <br>
 <div id ="droppable">  
-<p>Drag Here </p>
+Drag Here 
  </div>
   		</div><!--take-->
 
-
   		<div id="give">
-  			Give What You Can
-  			<form>
-  				  <input type="text" name="firstname" style="font-size:14pt ; width: 300px">
-  				  <br>
-<input type="submit" value="Give">
-  			</form>
-  			<!--newrowhere-->
-		<div class="card" style="background-color: #EAC6C3 ; float: left">
-  			peace
-  		</div><!--card-->
-		<div class="card" style="background-color: #B8C2D1 ; float: left " >
-			hope 
-		</div><!--card-->
-		<div class="card" style="background-color: #C7E2E1 ; float: left " >
-			compassion 
-		</div><!--card-->
+
+         Give What You Can: <br>
+ <input type="text" id="emotion">
+  <br/>
+  <button onclick="giveEmotion()" id="show">Give</button>
+ <br>
+
+</head>
+<body>
+  
+<script id="jsbin-javascript">
+function giveEmotion(){
+  $(".addcard").css('visibility','visible');
+
+  var newCard = document.getElementById('emotion').value;
+  document.getElementById('display').innerHTML = newCard;
+}
+
+</script>
+
+
+  <div class="addcard" style="background-color: #C7E2E1; float: left" >
+ <span id="display">new card</span>
+      </div><!--card-->
+    <!-- <div class="addcard" style="background-color: #B8C2D1 ; float: left " >
+      new card 
+    </div><!--card-->
+    <!-- <div class="addcard" style="background-color: #C7E2E1 ; float: left " >
+      new card 
+    </div><!--card-->   
+
+    <br>
+    <br>
+<hr>
+
+       <div style="text-align:left"><span style="font-size: .5em">Recently you gave: </span></div>
+        <!--newrowhere-->
+		
+
+
 <!--newrowhere-->
-		<div class="card" style="background-color: #B8C2D1 ; float: left">
+		<div class="givecard" style="background-color: #B8C2D1 ; float: left">
   			healing
   		</div><!--card-->
-		<div class="card" style="background-color: #EAC6C3 ; float: left " >
+		<div class="givecard" style="background-color: #EAC6C3 ; float: left " >
 			joy 
 		</div><!--card-->
-		<div class="card" style="background-color: #ABC6B4 ; float: left " >
+		<div class="givecard" style="background-color: #ABC6B4 ; float: left " >
 			faith 
 		</div><!--card-->
 
-			<!--newrowhere-->
-		<div class="card" style="background-color: #ABC6B4 ; float: left">
-  			service
-  		</div><!--card-->
-		<div class="card" style="background-color: #C7E2E1 ; float: left " >
-			forgiveness 
-		</div><!--card-->
-		<div class="card" style="background-color: #B8C2D1 ; float: left " >
-			creativity 
-		</div><!--card-->
+			
 
   		</div><!--give-->
   	</div><!--all-->
+<div id="instagram">
+  <div id="rice">
+    <script>
+      /*
+      function cafe(address) {
+    return alfreds.address;
+      }*/
+  
+  function instagramData(json) {
+    console.log(json.data);
+    console.log("instagramData running");
+    var imgTagString = '';
 
+    json.data.forEach(function(item) {
+      var imgUrl = item.images.standard_resolution.url;
+      // console.log(imgUrl);
+      imgTagString += '<img class="thumbnails" src="'+imgUrl+'">';
+    });
+    document.getElementById('jonathan-fudem-is-the-greatest').innerHTML = imgTagString;
+      }
+
+    </script>
+    <div id="jonathan-fudem-is-the-greatest">
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+</script>
   </body>
 </html>
